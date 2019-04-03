@@ -37,9 +37,6 @@ namespace BigriverBookstore_api_tests
 
             // act
             var response = await client.SendAsync(request);
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var deserializedBody = _fixture.Server.GetService<IJsonApiDeSerializer>()
-                .DeserializeList<Book>(responseBody);
 
             // assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -47,7 +44,7 @@ namespace BigriverBookstore_api_tests
 
 
         [Fact]
-        public async Task Can_Get_Books_By_Id()
+        public async Task Can_Get_Book_By_Id()
         {
             // arrange
             var client = _fixture.Server.CreateClient();

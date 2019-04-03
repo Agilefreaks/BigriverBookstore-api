@@ -10,11 +10,11 @@ using AutoMapper;
 
 namespace BigriverBookstore_api.Services
 {
-    public class BookResourceService : BaseService, IResourceService<Book>
+    public class AuthorResourceService : BaseService, IResourceService<Author>
     {        
-        public BookResourceService(IRepositoryWrapper wrapper, IMapper mapper) : base(wrapper, mapper){}
+        public AuthorResourceService(IRepositoryWrapper wrapper, IMapper mapper) : base(wrapper, mapper){}
 
-        public Task<Book> CreateAsync(Book entity)
+        public Task<Author> CreateAsync(Author entity)
         {
             throw new NotImplementedException();
         }
@@ -24,9 +24,9 @@ namespace BigriverBookstore_api.Services
             throw new NotImplementedException();
         }
 
-        public Task<Book> GetAsync(int id)
+        public Task<Author> GetAsync(int id)
         {
-            var task = new Task<Book>(() => this.GetOne(id));
+            var task = new Task<Author>(() => this.GetOne(id));
 
             task.RunSynchronously(TaskScheduler.Default);
 
@@ -43,7 +43,7 @@ namespace BigriverBookstore_api.Services
             throw new NotImplementedException();
         }
 
-        public Task<Book> UpdateAsync(int id, Book entity)
+        public Task<Author> UpdateAsync(int id, Author entity)
         {
             throw new NotImplementedException();
         }
@@ -53,25 +53,25 @@ namespace BigriverBookstore_api.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Book>> GetAsync()
+        public Task<IEnumerable<Author>> GetAsync()
         {
-            var task = new Task<IEnumerable<Book>>(() => this.GetAll());
+            var task = new Task<IEnumerable<Author>>(() => this.GetAll());
 
             task.RunSynchronously(TaskScheduler.Default);
 
             return task;
         }
 
-        private IEnumerable<Book> GetAll()
+        private IEnumerable<Author> GetAll()
         {
-            var books = _wrapper.BookRepository.GetAllEntities();
-            return books.Select(b => _mapper.Map<Data.Entities.Book, Book>(b));
+            var authors = _wrapper.AuthorRepository.GetAllEntities();
+            return authors.Select(b => _mapper.Map<Data.Entities.Author, Author>(b));
         }
 
-        private Book GetOne(int id)
+        private Author GetOne(int id)
         {
-            var book = _wrapper.BookRepository.GetById(id);
-            return _mapper.Map<Data.Entities.Book, Book>(book);
+            var author = _wrapper.AuthorRepository.GetById(id);
+            return _mapper.Map<Data.Entities.Author, Author>(author);
         }
         
     }

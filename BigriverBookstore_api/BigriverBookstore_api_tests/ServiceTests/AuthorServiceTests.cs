@@ -11,33 +11,32 @@ using AutoMapper;
 namespace BigriverBookstore_api_tests
 {
     [Collection("WebHostCollection")]
-    public class BookServiceTests
+    public class AuthorServiceTests
     {
-        private RepositoryWrapper _repository;
+        private RepositoryWrapper _context;
         private IMapper _mapper;
-        private BookResourceService _service;
+        private AuthorResourceService _service;
         
         private void Initialize()
         {
-            _repository = new Mock<RepositoryWrapper>().Object;
-            _repository.Books.ClearAll();
+            _context = new Mock<RepositoryWrapper>().Object;
+            _context.AuthorRepository.ClearAll();
             var config = new MapperConfiguration(opts =>
             {
-                // Add your mapper profile configs or mappings here
                 opts.AddProfile(new MappingProfile());
             });
 
             _mapper = config.CreateMapper();
-            _service = new BookResourceService(_repository, _mapper);
+            _service = new AuthorResourceService(_context, _mapper);
         }
 
         [Fact]
-        public void Can_Get_Books()
+        public void Can_Get_Authors()
         {
             // arrange
             this.Initialize();
 
-            _repository.Books.Add(new Book { Date_Published = DateTime.Now, Id = 3, ISBN = "312", Title = "Test" });
+            _context.AuthorRepository.Add(new Author { Id = 3, DateOfBirth = DateTime.Now, FirstName = "FN3", LastName = "LN3", Nationality = "Turc" });
 
             // act
             var result = _service.GetAsync();
@@ -49,12 +48,12 @@ namespace BigriverBookstore_api_tests
         }
 
         [Fact]
-        public void Can_Get_Book_By_Id()
+        public void Can_Get_Author_By_Id()
         {
             // arrange
             this.Initialize();
 
-            _repository.Books.Add(new Book { Date_Published = DateTime.Now, Id = 3, ISBN = "312", Title = "Test" });
+            _context.AuthorRepository.Add(new Author { Id = 3, DateOfBirth = DateTime.Now, FirstName = "FN3", LastName = "LN3", Nationality = "Turc" });
 
             // act
             var result = _service.GetAsync(3);
@@ -64,12 +63,12 @@ namespace BigriverBookstore_api_tests
         }
 
         [Fact]
-        public void Can_Get_Book_By_Id_Nonexistent()
+        public void Can_Get_Author_By_Id_Nonexistent()
         {
             // arrange
             this.Initialize();
 
-            _repository.Books.Add(new Book { Date_Published = DateTime.Now, Id = 3, ISBN = "312", Title = "Test" });
+            _context.AuthorRepository.Add(new Author { Id = 3, DateOfBirth = DateTime.Now, FirstName = "FN3", LastName = "LN3", Nationality = "Turc" });
 
             // act
             var result = _service.GetAsync(4);
@@ -80,7 +79,7 @@ namespace BigriverBookstore_api_tests
         }
 
         [Fact]
-        public void Can_Get_Books_Blank_Repository()
+        public void Can_Get_Authors_Blank_Repository()
         {
             // arrange
             this.Initialize();

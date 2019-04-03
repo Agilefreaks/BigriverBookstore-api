@@ -5,7 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using JsonApiDotNetCore.Extensions;
+using JsonApiDotNetCore.Services;
 using BigriverBookstore_api.Data;
+using BigriverBookstore_api.Services;
+using BigriverBookstore_api.Resources;
 using AutoMapper;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -34,6 +37,8 @@ namespace BigriverBookstore_api
                 discover => discover.AddCurrentAssembly());
 
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+            services.AddScoped<IResourceService<Book>, BookResourceService>();
+            services.AddScoped<IResourceService<Author>, AuthorResourceService>();
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>
             {
