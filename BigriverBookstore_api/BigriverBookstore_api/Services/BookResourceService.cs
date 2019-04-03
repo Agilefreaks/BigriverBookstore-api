@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JsonApiDotNetCore.Services;
-using BigriverBookstore_api.Models;
+using BigriverBookstore_api.Resources;
 using JsonApiDotNetCore.Models;
+using BigriverBookstore_api.Data;
+using AutoMapper;
 
 namespace BigriverBookstore_api.Services
 {
-    public class BookService : IResourceService<Book>
-    {
+    public class BookResourceService : BaseService, IResourceService<Book>
+    {        
+        public BookResourceService(IRepositoryWrapper wrapper, IMapper mapper) : base(wrapper, mapper){}
+
         public Task<Book> CreateAsync(Book entity)
         {
             throw new NotImplementedException();
@@ -60,48 +64,15 @@ namespace BigriverBookstore_api.Services
 
         private IEnumerable<Book> GetAll()
         {
-            return this.GetFakeBookList();
+            var books = _wrapper.Books.GetAllEntities();
+            return books.Select(b => _mapper.Map<Data.Entities.Book, Book>(b));
         }
 
         private Book GetOne(int id)
         {
-            return this.GetFakeBookList().FirstOrDefault(b => b.Id == id);
+            var book = _wrapper.Books.GetById(id);
+            return _mapper.Map<Data.Entities.Book, Book>(book);
         }
-
-        private IEnumerable<Book> GetFakeBookList()
-        {
-            return new List<Book> {
-                new Book {
-                    Id=1,
-                    Title = "My Book1",
-                    ISBN = "978-3-16-148410-1",
-                    Date_Published = new DateTime(2019,04,01)
-                },
-                new Book {
-                    Id=2,
-                    Title = "My Book2",
-                    ISBN = "978-3-16-148410-2",
-                    Date_Published = new DateTime(2019,04,01)
-                },
-                new Book {
-                    Id=3,
-                    Title = "My Book3",
-                    ISBN = "978-3-16-148410-3",
-                    Date_Published = new DateTime(2019,04,01)
-                },
-                new Book {
-                    Id=4,
-                    Title = "My Book4",
-                    ISBN = "978-3-16-148410-4",
-                    Date_Published = new DateTime(2019,04,01)
-                },
-                new Book {
-                    Id=5,
-                    Title = "My Book5",
-                    ISBN = "978-3-16-148410-5",
-                    Date_Published = new DateTime(2019,04,01)
-                },
-            };
-        }
+        
     }
 }

@@ -1,70 +1,96 @@
 using Xunit;
-using BigriverBookstore_api.Models;
-using BigriverBookstore_api_tests.Helpers;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using JsonApiDotNetCore.Serialization;
-
+using BigriverBookstore_api.Data;
+using BigriverBookstore_api.Data.Entities;
+using BigriverBookstore_api.Services;
+using BigriverBookstore_api;
+using Moq;
+using System;
+using System.Linq;
+using AutoMapper;
 
 namespace BigriverBookstore_api_tests
 {
     [Collection("WebHostCollection")]
-    public class BookServiceTests : IClassFixture<TestFixture>
+    public class BookServiceTests
     {
-        private readonly TestFixture _fixture;
-
-        public BookServiceTests(TestFixture fixture)
+        private RepositoryWrapper _repository;
+        private IMapper _mapper;
+        private BookResourceService _service;
+        
+        private void Initialize()
         {
-            _fixture = fixture;
+            _repository = new Mock<RepositoryWrapper>().Object;
+            _repository.Books.ClearAll();
+            var config = new MapperConfiguration(opts =>
+            {
+                // Add your mapper profile configs or mappings here
+                opts.AddProfile(new MappingProfile());
+            });
+
+            _mapper = config.CreateMapper();
+            _service = new BookResourceService(_repository, _mapper);
         }
 
         [Fact]
-        public async Task Can_Get_Books()
+        public void Can_Get_Books()
         {
             // arrange
-            var client = _fixture.Server.CreateClient();
+            this.Initialize();
 
-            var httpMethod = new HttpMethod("GET");
-            var route = $"/api/books";
-
-            var request = new HttpRequestMessage(httpMethod, route);
+            _repository.Books.Add(new Book { Date_Published = DateTime.Now, Id = 3, ISBN = "312", Title = "Test" });
 
             // act
-            var response = await client.SendAsync(request);
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var deserializedBody = _fixture.Server.GetService<IJsonApiDeSerializer>()
-                .DeserializeList<Book>(responseBody);
+            var result = _service.GetAsync();
+            var bookList = (result.Result).ToList();
 
             // assert
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.NotNull(deserializedBody);
-            Assert.NotEmpty(deserializedBody);
-            Assert.Equal(5, deserializedBody.Count);
+            Assert.True(bookList.Count == 1);
+            Assert.True(bookList.FirstOrDefault().Id == 3);
         }
 
-
         [Fact]
-        public async Task Can_Get_Books_By_Id()
+        public void Can_Get_Book_By_Id()
         {
             // arrange
-            var client = _fixture.Server.CreateClient();
-            var bookId = 4;
-            var httpMethod = new HttpMethod("GET");
-            var route = $"/api/books/" + bookId.ToString();
+            this.Initialize();
 
-            var request = new HttpRequestMessage(httpMethod, route);
+            _repository.Books.Add(new Book { Date_Published = DateTime.Now, Id = 3, ISBN = "312", Title = "Test" });
 
             // act
-            var response = await client.SendAsync(request);
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var deserializedBody = _fixture.Server.GetService<IJsonApiDeSerializer>()
-                .Deserialize<Book>(responseBody);
+            var result = _service.GetAsync(3);
 
             // assert
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.NotNull(deserializedBody);
-            Assert.Equal(bookId, deserializedBody.Id);
+            Assert.True(result.Result.Id == 3);
+        }
+
+        [Fact]
+        public void Can_Get_Book_By_Id_Nonexistent()
+        {
+            // arrange
+            this.Initialize();
+
+            _repository.Books.Add(new Book { Date_Published = DateTime.Now, Id = 3, ISBN = "312", Title = "Test" });
+
+            // act
+            var result = _service.GetAsync(4);
+
+            // assert
+            Assert.True(result.IsFaulted);
+            Assert.True(result.Exception.InnerExceptions.Count == 1);
+        }
+
+        [Fact]
+        public void Can_Get_Books_Blank_Repository()
+        {
+            // arrange
+            this.Initialize();
+
+            // act
+            var result = _service.GetAsync();
+
+            // assert
+            Assert.True((result.Result).ToList().Count == 0);
+            Assert.True(result.Exception == null);
         }
     }
 }
