@@ -15,5 +15,9 @@ namespace BigriverBookstore_api.Data.Entities
         public DateTime DateOfBirth { get; set; }
         
         public string Nationality { get; set; }
+
+        public int BookId { get; set; }
+
+        public Book Book { get; set; }
     }
 }

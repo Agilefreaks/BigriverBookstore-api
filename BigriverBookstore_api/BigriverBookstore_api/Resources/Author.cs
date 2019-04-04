@@ -20,5 +20,10 @@ namespace BigriverBookstore_api.Resources
 
         [Attr("nationality")]
         public string Nationality { get; set; }
+
+        [HasOne("book")]
+        public virtual Book Book { get; set; }
+
+        public int BookId { get; set; }
     }
 }

@@ -17,5 +17,10 @@ namespace BigriverBookstore_api.Resources
 
         [Attr("isbn")]
         public string ISBN { get; set; }
+
+        public int AuthorId { get; set; }
+
+        [HasOne("author")]
+        public virtual Author Author { get; set; }
     }
 }
