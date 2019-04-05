@@ -13,6 +13,7 @@ namespace BigriverBookstore_api
         public MappingProfile()
         {
             this.CreateMap<Data.Entities.Book, Resources.Book>().ReverseMap();
+            this.CreateMap<Data.Entities.Author, Resources.Author>().ReverseMap();
         }
     }
 }

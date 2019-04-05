@@ -8,6 +8,8 @@ namespace BigriverBookstore_api.Data
 {
     public interface IRepositoryWrapper
     {
-        IBookRepository Books { get; }
+        IBookRepository BookRepository { get; }
+
+        IAuthorRepository AuthorRepository { get; }
     }
 }
