@@ -7,27 +7,30 @@ using Moq;
 using System;
 using System.Linq;
 using AutoMapper;
+using BigriverBookstore_api.Data.Repositories;
+using System.Collections.Generic;
 
 namespace BigriverBookstore_api_tests
 {
     [Collection("WebHostCollection")]
     public class BookServiceTests
     {
-        private RepositoryWrapper _context;
         private IMapper _mapper;
         private BookResourceService _service;
-        
+        private Mock<IBookRepository> _bookRepositoryMock = new Mock<IBookRepository>();
+
         private void Initialize()
         {
-            _context = new Mock<RepositoryWrapper>().Object;
-            _context.BookRepository.ClearAll();
+            var contextMock = new Mock<IRepositoryWrapper>();
+            contextMock.SetupGet(c => c.BookRepository).Returns(_bookRepositoryMock.Object);
+
             var config = new MapperConfiguration(opts =>
             {
                 opts.AddProfile(new MappingProfile());
             });
 
             _mapper = config.CreateMapper();
-            _service = new BookResourceService(_context, _mapper);
+            _service = new BookResourceService(contextMock.Object, _mapper);
         }
 
         [Fact]
@@ -35,8 +38,7 @@ namespace BigriverBookstore_api_tests
         {
             // arrange
             this.Initialize();
-
-            _context.BookRepository.Add(new Book { Date_Published = DateTime.Now, Id = 3, ISBN = "312", Title = "Test" });
+            _bookRepositoryMock.Setup(r=>r.GetAllEntities()).Returns(new List<Book> { new Book { Date_Published = DateTime.Now, Id = 3, ISBN = "312", Title = "Test" } });
 
             // act
             var result = _service.GetAsync();
@@ -52,30 +54,28 @@ namespace BigriverBookstore_api_tests
         {
             // arrange
             this.Initialize();
-
-            _context.BookRepository.Add(new Book { Date_Published = DateTime.Now, Id = 3, ISBN = "312", Title = "Test" });
+            _bookRepositoryMock.Setup(r => r.GetById(3)).Returns(new Book { Date_Published = DateTime.Now, Id = 3, ISBN = "312", Title = "Test" });
 
             // act
             var result = _service.GetAsync(3);
+            var book = result.Result;
 
             // assert
-            Assert.True(result.Result.Id == 3);
+            Assert.True(book.Id == 3);
         }
 
         [Fact]
         public void Can_Get_Book_By_Id_Nonexistent()
         {
-            // arrange
-            this.Initialize();
+            //arrange
+            Initialize();
+            _bookRepositoryMock.Setup(r => r.GetById(3)).Returns(new Book { Date_Published = DateTime.Now, Id = 3, ISBN = "312", Title = "Test" });
 
-            _context.BookRepository.Add(new Book { Date_Published = DateTime.Now, Id = 3, ISBN = "312", Title = "Test" });
-
-            // act
+            //act
             var result = _service.GetAsync(4);
 
-            // assert
-            Assert.True(result.IsFaulted);
-            Assert.True(result.Exception.InnerExceptions.Count == 1);
+            //assert
+            Assert.True(result.Result == null);
         }
 
         [Fact]
@@ -83,13 +83,14 @@ namespace BigriverBookstore_api_tests
         {
             // arrange
             this.Initialize();
+            _bookRepositoryMock.Setup(r => r.GetAllEntities()).Returns(new List<Book>());
 
             // act
             var result = _service.GetAsync();
+            var bookList = (result.Result).ToList();
 
             // assert
             Assert.True((result.Result).ToList().Count == 0);
-            Assert.True(result.Exception == null);
         }
     }
 }

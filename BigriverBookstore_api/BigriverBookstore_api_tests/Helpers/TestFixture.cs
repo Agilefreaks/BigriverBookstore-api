@@ -1,7 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.AspNetCore.Mvc;
 using BigriverBookstore_api;
 
 namespace BigriverBookstore_api_tests.Helpers

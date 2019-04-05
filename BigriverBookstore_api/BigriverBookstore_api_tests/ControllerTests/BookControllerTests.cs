@@ -1,16 +1,8 @@
 using Xunit;
-using BigriverBookstore_api.Resources;
 using BigriverBookstore_api_tests.Helpers;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using JsonApiDotNetCore.Serialization;
-using Moq;
-using JsonApiDotNetCore.Services;
-using BigriverBookstore_api.Data;
-using AutoMapper;
-using BigriverBookstore_api.Services;
-using BigriverBookstore_api;
 
 namespace BigriverBookstore_api_tests
 {
@@ -41,8 +33,7 @@ namespace BigriverBookstore_api_tests
             // assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
-
-
+        
         [Fact]
         public async Task Can_Get_Book_By_Id()
         {

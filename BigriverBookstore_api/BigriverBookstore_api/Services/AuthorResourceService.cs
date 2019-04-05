@@ -26,7 +26,7 @@ namespace BigriverBookstore_api.Services
 
         public Task<Author> GetAsync(int id)
         {
-            var task = new Task<Author>(() => this.GetOne(id));
+            var task = new Task<Author>(() => GetOne(id));
 
             task.RunSynchronously(TaskScheduler.Default);
 
@@ -55,7 +55,7 @@ namespace BigriverBookstore_api.Services
 
         public Task<IEnumerable<Author>> GetAsync()
         {
-            var task = new Task<IEnumerable<Author>>(() => this.GetAll());
+            var task = new Task<IEnumerable<Author>>(() => GetAll());
 
             task.RunSynchronously(TaskScheduler.Default);
 

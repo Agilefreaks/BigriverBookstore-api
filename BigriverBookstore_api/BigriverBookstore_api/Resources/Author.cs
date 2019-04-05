@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 using JsonApiDotNetCore.Models;
 
 namespace BigriverBookstore_api.Resources
@@ -21,9 +18,7 @@ namespace BigriverBookstore_api.Resources
         [Attr("nationality")]
         public string Nationality { get; set; }
 
-        [HasOne("book")]
-        public virtual Book Book { get; set; }
-
-        public int BookId { get; set; }
+        [HasMany("books")]
+        public virtual List<Book> Books { get; set; }
     }
 }

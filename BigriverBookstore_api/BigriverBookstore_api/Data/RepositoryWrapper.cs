@@ -1,6 +1,7 @@
 ﻿using BigriverBookstore_api.Data.Repositories;
 using BigriverBookstore_api.Data.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace BigriverBookstore_api.Data
 {
@@ -8,7 +9,6 @@ namespace BigriverBookstore_api.Data
     {
         private IBookRepository _book;
         private IAuthorRepository _author;
-
 
         public IBookRepository BookRepository
         {
@@ -50,7 +50,7 @@ namespace BigriverBookstore_api.Data
 
         private void AddFakeBookData()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 var book = this.GetBook(i);
                 book.Author = GetAuthor(i);
@@ -60,10 +60,9 @@ namespace BigriverBookstore_api.Data
 
         private void AddFakeAuthorData()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i <= 5; i++)
             {
-                var author = this.GetAuthor(i);
-                author.Book = GetBook(i);
+                var author = GetAuthor(i);
                 _author.Add(author);
             }
         }
@@ -89,7 +88,7 @@ namespace BigriverBookstore_api.Data
                 LastName = "LN" + id.ToString(),
                 DateOfBirth = DateTime.Now,
                 Nationality = "Romanian",
-                BookId = id
+                Books = new List<Book> { GetBook(id) }
             };
         }
     }

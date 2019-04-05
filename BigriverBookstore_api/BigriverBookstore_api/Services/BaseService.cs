@@ -3,16 +3,16 @@ using BigriverBookstore_api.Data;
 
 namespace BigriverBookstore_api.Services
 {
-    public class BaseService
+    public abstract class BaseService
     {
-        public IMapper _mapper { get; set; }
+        protected IMapper _mapper { get; set; }
 
-        public IRepositoryWrapper _wrapper;
+        protected IRepositoryWrapper _wrapper;
 
         public BaseService(IRepositoryWrapper wrapper, IMapper mapper)
         {
-            this._wrapper = wrapper;
-            this._mapper = mapper;
+            _wrapper = wrapper;
+            _mapper = mapper;
         }
     }
 }
