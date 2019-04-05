@@ -8,6 +8,7 @@ namespace BigriverBookstore_api
         {
             this.CreateMap<Data.Entities.Book, Resources.Book>().ReverseMap();
             this.CreateMap<Data.Entities.Author, Resources.Author>().ReverseMap();
+            this.CreateMap<Data.Entities.Photo, Resources.Photo>().ReverseMap();
         }
     }
 }

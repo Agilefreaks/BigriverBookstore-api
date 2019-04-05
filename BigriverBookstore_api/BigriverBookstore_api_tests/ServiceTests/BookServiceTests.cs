@@ -92,5 +92,20 @@ namespace BigriverBookstore_api_tests
             // assert
             Assert.True((result.Result).ToList().Count == 0);
         }
+
+        [Fact]
+        public void Can_Get_Book_With_Photo()
+        {
+            // arrange
+            Initialize();
+            _bookRepositoryMock.Setup(r => r.GetById(1)).Returns(new Book { Id = 1, PhotoId = 1, Photo = new Photo { Id = 1, URL = "localhost" } });
+
+            // act
+            var result = _service.GetAsync(1);
+            var book = result.Result;
+
+            // assert
+            Assert.True(book.Photo != null && book.Photo.Id == 1);
+        }
     }
 }

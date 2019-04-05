@@ -13,5 +13,9 @@ namespace BigriverBookstore_api.Data.Entities
         public int AuthorId { get; set; }
 
         public Author Author { get; set; }
+
+        public int PhotoId { get; set; }
+
+        public Photo Photo { get; set; }
     }
 }

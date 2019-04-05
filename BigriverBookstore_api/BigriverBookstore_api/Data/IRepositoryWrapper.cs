@@ -7,5 +7,7 @@ namespace BigriverBookstore_api.Data
         IBookRepository BookRepository { get; }
 
         IAuthorRepository AuthorRepository { get; }
+
+        IPhotoRepository PhotoRepository { get; }
     }
 }

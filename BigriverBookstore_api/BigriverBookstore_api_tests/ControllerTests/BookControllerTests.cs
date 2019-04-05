@@ -44,12 +44,32 @@ namespace BigriverBookstore_api_tests
             var route = $"/api/books/" + bookId.ToString();
 
             var request = new HttpRequestMessage(httpMethod, route);
-
+            
             // act
             var response = await client.SendAsync(request);
 
             // assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task Can_Get_Book_By_Id_With_Included_Author()
+        {
+            // arrange
+            var client = _fixture.Server.CreateClient();
+            var bookId = 4;
+            var httpMethod = new HttpMethod("GET");
+            var route = $"/api/books/" + bookId.ToString()+"?included=author";
+
+            var request = new HttpRequestMessage(httpMethod, route);
+
+            // act
+            var response = await client.SendAsync(request);
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            // assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Contains("include", responseBody);
         }
     }
 }

@@ -9,6 +9,26 @@ namespace BigriverBookstore_api.Data
     {
         private IBookRepository _book;
         private IAuthorRepository _author;
+        private IPhotoRepository _photo;
+
+        public IPhotoRepository PhotoRepository
+        {
+            get
+            {
+                if(_photo == null)
+                {
+                    _photo = new PhotoRepository();
+                    AddFakePhotoData();
+                }
+
+                return _photo;
+            }
+
+            set
+            {
+                _photo = value;
+            }
+        }
 
         public IBookRepository BookRepository
         {
@@ -54,6 +74,7 @@ namespace BigriverBookstore_api.Data
             {
                 var book = this.GetBook(i);
                 book.Author = GetAuthor(i);
+                book.Photo = GetPhoto(i);
                 _book.Add(book);
             }
         }
@@ -67,6 +88,16 @@ namespace BigriverBookstore_api.Data
             }
         }
 
+        private void AddFakePhotoData()
+        {
+            for (int i = 1; i <= 5; i++)
+            {
+                var photo = GetPhoto(i);
+                photo.Book = GetBook(i);
+                _photo.Add(photo);
+            }
+        }
+
         private Book GetBook(int id)
         {
             return new Book
@@ -75,7 +106,8 @@ namespace BigriverBookstore_api.Data
                 Title = "My Book" + id.ToString(),
                 ISBN = "978-3-16-148410-" + id.ToString(),
                 Date_Published = new DateTime(2019, 04, 01),
-                AuthorId = id
+                AuthorId = id,
+                PhotoId = id
             };
         }
 
@@ -89,6 +121,16 @@ namespace BigriverBookstore_api.Data
                 DateOfBirth = DateTime.Now,
                 Nationality = "Romanian",
                 Books = new List<Book> { GetBook(id) }
+            };
+        }
+
+        private Photo GetPhoto(int id)
+        {
+            return new Photo
+            {
+                URL = @"https://loremflickr.com/300/200/cat",
+                BookId = id,
+                Book = GetBook(id)
             };
         }
     }
