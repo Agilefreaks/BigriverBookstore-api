@@ -28,5 +28,7 @@ $ python3 run.py
 -   Unit Tests
 
 License
+-------
+MIT
 
 **Free Software, Hell Yeah!**
