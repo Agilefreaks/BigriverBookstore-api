@@ -6,7 +6,7 @@ The project requires Python 3 and Pip 3. It was created in a virtual environment
 
 ```sh
 $ pip3 install --user pipenv
-$ cd bookstore
+$ cd BigriverBookstore-api
 # The following command will install the project's dependencies from the Pipfile.
 $ pipenv install
 # Next, activate the pipenv shell.
