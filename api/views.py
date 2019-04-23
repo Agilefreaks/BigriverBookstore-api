@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify
-from .models import Book
 from .schemas import BookSchema
 from .mock_db import db
 
