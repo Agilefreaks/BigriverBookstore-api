@@ -60,4 +60,10 @@ TBD
  
 # Running linting
 
-TBD
+The linter used for this project is **pylint**.
+```sh
+# Simply run pylint on the folder or files you wish to check. 
+# Example:
+$ pylint api
+# This will check all .py files inside the api folder.
+```
