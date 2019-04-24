@@ -38,13 +38,35 @@ Don't work on this out of the office, you can work on other related projects but
 
 # Running the project
 
-TBD
+## Requirements
+* Python >= 3.6
+* Pip
+* pipenv (used to create a virtual environment)
+
+```sh
+$ pip3 install --user pipenv
+$ cd BigriverBook-api
+# The following command will install the project's dependencies from the Pipfile.
+$ pipenv install
+# Next, activate the pipenv shell.
+$ pipenv shell
+# Finally, run the project using the run.py entry point.
+$ python3 run.py
+```
 
 # Running the specs
 
-TBD
+```sh
+# To run tests, there is a simple command for it.
+$ python3 tests.py
+```
  
 # Running linting
 
-TBD
-
+The linter used for this project is **pylint**.
+```sh
+# Simply run pylint on the folder or files you wish to check. 
+# Example:
+$ pylint api
+# This will check all .py files inside the api folder.
+```
