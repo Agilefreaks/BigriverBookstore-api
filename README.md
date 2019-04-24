@@ -56,7 +56,10 @@ $ python3 run.py
 
 # Running the specs
 
-TBD
+```sh
+# To run tests, there is a simple command for it.
+$ python3 tests.py
+```
  
 # Running linting
 
