@@ -6,3 +6,7 @@ class Model:
 
 class Book(Model):
     pass
+
+
+class Author(Model):
+    pass

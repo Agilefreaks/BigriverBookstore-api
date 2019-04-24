@@ -1,16 +1,7 @@
-from flask import Blueprint, jsonify
-from .schemas import BookSchema
-from .mock_db import db
-
-
-def jsonify_schema_dump(*args, **kwargs):
-    """Wrapper around jsonify that sets the Content-Type of the response to
-    application/vnd.api+json.
-    """
-    response = jsonify(*args, **kwargs)
-    response.mimetype = 'application/vnd.api+json'
-    return response
-
+from flask import Blueprint
+from api.mock_db import db
+from api.schemas import BookSchema
+from . import jsonify_schema_dump
 
 books_bp = Blueprint('books', __name__)
 

@@ -14,3 +14,16 @@ class BookSchema(Schema):
         self_view = 'books.get_by_id'
         self_view_kwargs = {'book_id': '<id>'}
         self_view_many = 'books.get_all'
+
+
+class AuthorSchema(Schema):
+    id = fields.Str()
+    first_name = fields.Str()
+    last_name = fields.Str()
+    date_of_birth = fields.Date()
+    nationality = fields.Str()
+
+    class Meta:
+        type_ = 'authors'
+        strict = True
+        self_view_many = 'authors.get_all'
