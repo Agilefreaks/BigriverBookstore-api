@@ -1,6 +1,6 @@
 from flask import Blueprint
 from api.mock_db import db
-from api.schemas import BookSchema
+from api.schemas.book import BookSchema
 from . import jsonify_schema_dump
 
 books_bp = Blueprint('books', __name__)

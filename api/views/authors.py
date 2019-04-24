@@ -1,6 +1,6 @@
 from flask import Blueprint
 from api.mock_db import db
-from api.schemas import AuthorSchema
+from api.schemas.author import AuthorSchema
 from . import jsonify_schema_dump
 
 authors_bp = Blueprint('authors', __name__)
