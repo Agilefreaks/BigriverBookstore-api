@@ -11,6 +11,6 @@ class BookSchema(Schema):
     class Meta:
         type_ = 'books'
         strict = True
-        self_view = 'books.get_by_id'
-        self_view_kwargs = {'book_id': '<id>'}
+        self_view = 'books.get'
+        self_view_kwargs = {'id': '<id>'}
         self_view_many = 'books.get_all'

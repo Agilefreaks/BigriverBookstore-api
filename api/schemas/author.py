@@ -12,4 +12,6 @@ class AuthorSchema(Schema):
     class Meta:
         type_ = 'authors'
         strict = True
+        self_view = 'authors.get'
+        self_view_kwargs = {'id': '<id>'}
         self_view_many = 'authors.get_all'

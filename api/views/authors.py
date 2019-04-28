@@ -1,13 +1,16 @@
 from flask import Blueprint
-from api.mock_db import db
-from api.schemas.author import AuthorSchema
-from . import jsonify_schema_dump
-
-authors_bp = Blueprint('authors', __name__)
 
 
-@authors_bp.route('/')
-def get_all():
-    authors = db['authors']
-    data = AuthorSchema(many=True).dump(authors).data
-    return jsonify_schema_dump(data)
+class AuthorsApi:
+    blueprint = Blueprint('authors', __name__)
+    repository = None
+
+    @staticmethod
+    @blueprint.route('/')
+    def get_all():
+        return AuthorsApi.repository.get_all()
+
+    @staticmethod
+    @blueprint.route('/<int:id>')
+    def get(id):
+        return AuthorsApi.repository.get(id)

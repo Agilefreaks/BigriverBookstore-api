@@ -1,13 +1,19 @@
 import unittest
-from api import create_app
+from api import FlaskAppFactory
+from api.repositories.books_repository import InMemoryBooksRepository
+from api.repositories.authors_repository import InMemoryAuthorsRepository
 from api.mock_db import db
+from api.schemas.book import BookSchema
+from api.schemas.author import AuthorSchema
 
-# Big TODO
+# UPDATE I can now plug in different repository implementations and their respective db contexts.
+# TODO Creating mock repositories and DB contexts to test the app.
 
 
 class TestCase(unittest.TestCase):
     def setUp(self):
-        self.app = create_app().test_client()
+        self.app = FlaskAppFactory(InMemoryBooksRepository(db, BookSchema),
+                                   InMemoryAuthorsRepository(db, AuthorSchema)).create().test_client()
 
     def tearDown(self):
         pass
