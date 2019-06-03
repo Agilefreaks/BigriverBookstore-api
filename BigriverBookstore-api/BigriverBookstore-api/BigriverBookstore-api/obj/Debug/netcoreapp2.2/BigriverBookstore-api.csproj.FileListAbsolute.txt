@@ -1,0 +1,15 @@
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/bin/Debug/netcoreapp2.2/BigriverBookstore-api.dll.config
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/bin/Debug/netcoreapp2.2/BigriverBookstore-api.deps.json
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/bin/Debug/netcoreapp2.2/BigriverBookstore-api.runtimeconfig.json
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/bin/Debug/netcoreapp2.2/BigriverBookstore-api.runtimeconfig.dev.json
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/bin/Debug/netcoreapp2.2/BigriverBookstore-api.dll
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/bin/Debug/netcoreapp2.2/BigriverBookstore-api.pdb
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/obj/Debug/netcoreapp2.2/BigriverBookstore-api.csprojAssemblyReference.cache
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/obj/Debug/netcoreapp2.2/BigriverBookstore-api.csproj.CoreCompileInputs.cache
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/obj/Debug/netcoreapp2.2/BigriverBookstore-api.RazorAssemblyInfo.cache
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/obj/Debug/netcoreapp2.2/BigriverBookstore-api.RazorAssemblyInfo.cs
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/obj/Debug/netcoreapp2.2/BigriverBookstore-api.AssemblyInfoInputs.cache
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/obj/Debug/netcoreapp2.2/BigriverBookstore-api.AssemblyInfo.cs
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/obj/Debug/netcoreapp2.2/BigriverBookstore-api.RazorTargetAssemblyInfo.cache
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/obj/Debug/netcoreapp2.2/BigriverBookstore-api.dll
+/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api/BigriverBookstore-api/obj/Debug/netcoreapp2.2/BigriverBookstore-api.pdb
