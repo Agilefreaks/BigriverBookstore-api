@@ -1,0 +1,82 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.WebService/BigriverBookstore-api.Server.WebService.csproj",
+    "projectName": "BigriverBookstore-api.Server.WebService",
+    "projectPath": "/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.WebService/BigriverBookstore-api.Server.WebService.csproj",
+    "outputPath": "/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.WebService/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.2"
+    ],
+    "sources": {
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp2.2": {
+        "projectReferences": {
+          "/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.ServiceModel/BigriverBookstore-api.Server.ServiceModel.csproj": {
+            "projectPath": "/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.ServiceModel/BigriverBookstore-api.Server.ServiceModel.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.2": {
+      "dependencies": {
+        "JsonApiFramework.Server": {
+          "target": "Package",
+          "version": "[2.1.0, )"
+        },
+        "Microsoft.ApplicationInsights.AspNetCore": {
+          "target": "Package",
+          "version": "[2.7.0, )"
+        },
+        "Microsoft.AspNetCore": {
+          "target": "Package",
+          "version": "[2.2.0, )"
+        },
+        "Microsoft.AspNetCore.HttpsPolicy": {
+          "target": "Package",
+          "version": "[2.2.0, )"
+        },
+        "Microsoft.AspNetCore.Mvc": {
+          "target": "Package",
+          "version": "[2.2.0, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.0, )",
+          "autoReferenced": true
+        },
+        "Swashbuckle.AspNetCore": {
+          "target": "Package",
+          "version": "[5.0.0-rc2, )"
+        },
+        "System.Diagnostics.Contracts": {
+          "target": "Package",
+          "version": "[4.3.0, )"
+        },
+        "xunit": {
+          "target": "Package",
+          "version": "[2.4.1, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}
