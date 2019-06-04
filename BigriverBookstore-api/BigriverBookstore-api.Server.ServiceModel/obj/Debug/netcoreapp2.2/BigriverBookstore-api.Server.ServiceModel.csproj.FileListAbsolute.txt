@@ -1,9 +1,0 @@
-/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.ServiceModel/obj/Debug/netcoreapp2.2/BigriverBookstore-api.Server.ServiceModel.csprojAssemblyReference.cache
-/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.ServiceModel/obj/Debug/netcoreapp2.2/BigriverBookstore-api.Server.ServiceModel.csproj.CoreCompileInputs.cache
-/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.ServiceModel/obj/Debug/netcoreapp2.2/BigriverBookstore-api.Server.ServiceModel.AssemblyInfoInputs.cache
-/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.ServiceModel/obj/Debug/netcoreapp2.2/BigriverBookstore-api.Server.ServiceModel.AssemblyInfo.cs
-/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.ServiceModel/obj/Debug/netcoreapp2.2/BigriverBookstore-api.Server.ServiceModel.dll
-/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.ServiceModel/obj/Debug/netcoreapp2.2/BigriverBookstore-api.Server.ServiceModel.pdb
-/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.ServiceModel/bin/Debug/netcoreapp2.2/BigriverBookstore-api.Server.ServiceModel.deps.json
-/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.ServiceModel/bin/Debug/netcoreapp2.2/BigriverBookstore-api.Server.ServiceModel.dll
-/Users/alin/RiderProjects/BigriverBookstore-api/BigriverBookstore-api.Server.ServiceModel/bin/Debug/netcoreapp2.2/BigriverBookstore-api.Server.ServiceModel.pdb
