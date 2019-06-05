@@ -7,9 +7,9 @@ namespace BigriverBookstore_api.ServiceModel.Configurations
     {
         public ApiEntryPointConfiguration()
         {
-            this.Hypermedia().SetApiCollectionPathSegment(String.Empty);
+            Hypermedia().SetApiCollectionPathSegment(String.Empty);
 
-            this.ResourceIdentity()
+            ResourceIdentity()
                 .SetApiType("api-entry-point");
         }
     }

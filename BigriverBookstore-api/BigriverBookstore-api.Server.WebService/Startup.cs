@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore;
 
 namespace BigriverBookstore_api.WebService
 {
@@ -31,6 +30,7 @@ namespace BigriverBookstore_api.WebService
                     Description = "Test API with ASP.NET Core 3.0"
                 });
 
+                c.IncludeXmlComments(string.Format(@"{0}/BigriverBookstore-api.Server.WebService.xml", System.AppDomain.CurrentDomain.BaseDirectory));
             });
         }
 
@@ -40,6 +40,13 @@ namespace BigriverBookstore_api.WebService
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                // Enable middleware to serve generated Swagger as a JSON endpoint.
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI V1");
+                });
             }
             else
             {
@@ -47,12 +54,9 @@ namespace BigriverBookstore_api.WebService
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            
             app.UseMvc();
-            app.UseSwaggerUI();
-            app.UseSwaggerUI(c => {  
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");  
-            }); 
+
         }
     }
 }

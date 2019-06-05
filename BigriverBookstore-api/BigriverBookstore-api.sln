@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigriverBookstore-api.Serve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigriverBookstore-api.Server.WebService", "BigriverBookstore-api.Server.WebService\BigriverBookstore-api.Server.WebService.csproj", "{BD4B4FB1-2D3C-4254-8D22-AE4DA304B87B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigriverBookstore-api.Tests", "BigriverBookstore-api.Tests\BigriverBookstore-api.Tests.csproj", "{9764E776-8876-441C-9FD6-C93A29F17D5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{BD4B4FB1-2D3C-4254-8D22-AE4DA304B87B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD4B4FB1-2D3C-4254-8D22-AE4DA304B87B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD4B4FB1-2D3C-4254-8D22-AE4DA304B87B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9764E776-8876-441C-9FD6-C93A29F17D5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9764E776-8876-441C-9FD6-C93A29F17D5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9764E776-8876-441C-9FD6-C93A29F17D5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9764E776-8876-441C-9FD6-C93A29F17D5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

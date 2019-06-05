@@ -1,8 +1,5 @@
 using System;
-using System.Security.Policy;
 using BigriverBookstore_api.ServiceModel;
-
-using JsonApiFramework.Http;
 using JsonApiFramework.JsonApi;
 using JsonApiFramework.Server;
 
@@ -11,25 +8,28 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BigriverBookstore_api.WebService.Controllers
 {
+    [Route("/")]
     public class ApiEntryPointController : Controller
     {
         #region WebApi Methods
-
-        [HttpGet("")]
-        public Document GetAsync()
+        
+        /// <summary>
+        /// API Root Path. Use this to see if the API is working.
+        /// </summary>
+        /// <returns>A pong</returns>
+        /// <response code="200">Returns pong to let you know that it's working</response>
+        [HttpGet]
+        [Produces("application/vnd.api+json")]
+        public Document Get()
         {
-            var apiEntryPoint = new ApiEntryPoint()
+            var apiEntryPoint = new ApiEntryPoint
             {
                 Message = @"pong",
+                Id = Guid.NewGuid()
             };
 
-            var currentRequestUri = this.Request.GetUri();
+            var currentRequestUri = new Uri("http://localhost:5000");
 
-            //var scheme = currentRequestUri.Scheme;
-            //var host = currentRequestUri.Host;
-            //var port = currentRequestUri.Port;
-            //var urlBuilderConfiguration = new UrlBuilderConfiguration(scheme, host, port);
-            
             using (var documentContext = new ResponseDocumentContext(currentRequestUri))
             {
                 var document = documentContext
