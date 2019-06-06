@@ -24,8 +24,8 @@ namespace BigriverBookstore_api.WebService.Controllers
         {
             var apiEntryPoint = new ApiEntryPoint
             {
-                Message = @"pong",
-                Id = Guid.NewGuid()
+                EntryPointId = Guid.NewGuid().ToString("N"),
+                Message = @"pong"
             };
 
             var currentRequestUri = new Uri("http://localhost:5000");
@@ -34,12 +34,12 @@ namespace BigriverBookstore_api.WebService.Controllers
             {
                 var document = documentContext
                     .NewDocument(currentRequestUri)
-                        .SetJsonApiVersion(JsonApiVersion.Version10)
-                        .Links()
-                            .AddSelfLink()
-                        .LinksEnd()
-                        .Resource(apiEntryPoint)
-                        .ResourceEnd()
+                    .SetJsonApiVersion(JsonApiVersion.Version10)
+                    .Links()
+                    .AddSelfLink()
+                    .LinksEnd()
+                    .Resource(apiEntryPoint)
+                    .ResourceEnd()
                     .WriteDocument();
 
                 return document;
