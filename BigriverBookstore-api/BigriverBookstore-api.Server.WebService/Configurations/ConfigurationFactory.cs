@@ -1,5 +1,5 @@
 using BigriverBookstore_api.ServiceModel.Configurations;
-
+using BigriverBookstore_api.WebService.Configurations;
 using JsonApiFramework.Conventions;
 using JsonApiFramework.ServiceModel;
 using JsonApiFramework.ServiceModel.Configuration;
@@ -31,6 +31,7 @@ namespace BigriverBookstore_api.ServiceModel
             var serviceModelBuilder = new ServiceModelBuilder();
 
             serviceModelBuilder.Configurations.Add(new ApiEntryPointConfiguration());
+            serviceModelBuilder.Configurations.Add(new BookConfiguration());
 
             serviceModelBuilder.HomeResource<ApiEntryPoint>();
 
