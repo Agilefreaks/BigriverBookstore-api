@@ -9,19 +9,20 @@ namespace BigriverBookstore_api.WebService.Configurations
         public BookConfiguration()
         {
             this.Hypermedia()
-                .SetApiCollectionPathSegment("book");
+                .SetApiCollectionPathSegment("books");
             
             this.ResourceIdentity(x => x.BookId)
                 .SetApiType("books");
 
             this.Attribute(x => x.Title)
-                .SetApiPropertyName("book-title");
+                .SetApiPropertyName("bookTitle");
 
             this.Attribute(x => x.DatePublished)
-                .SetApiPropertyName("date-published");
+                .SetApiPropertyName("datePublished");
 
             this.Attribute(x => x.ISBN)
                 .SetApiPropertyName("isbn");
+            
         }
     }
 }

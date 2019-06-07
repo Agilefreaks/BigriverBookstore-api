@@ -30,7 +30,6 @@ namespace BigriverBookstore_api.WebService
                     Description = "Test API with ASP.NET Core 3.0"
                 });
 
-                c.IncludeXmlComments(string.Format(@"{0}/BigriverBookstore-api.Server.WebService.xml", System.AppDomain.CurrentDomain.BaseDirectory));
             });
         }
 

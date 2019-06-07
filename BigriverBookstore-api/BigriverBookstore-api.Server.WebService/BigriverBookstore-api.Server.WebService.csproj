@@ -8,8 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Exceptionless" Version="4.0.1921-pre" />
         <PackageReference Include="JsonApiFramework.Server" Version="2.1.0" />
         <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.0" />
+        <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
         <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
         <PackageReference Include="Microsoft.AspNetCore.HttpsPolicy" Version="2.2.0" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />

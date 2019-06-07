@@ -1,5 +1,6 @@
 using System;
 using BigriverBookstore_api.ServiceModel;
+using JsonApiFramework.Http;
 using JsonApiFramework.JsonApi;
 using JsonApiFramework.Server;
 
@@ -28,7 +29,15 @@ namespace BigriverBookstore_api.WebService.Controllers
                 Message = @"pong"
             };
 
-            var currentRequestUri = new Uri("http://localhost:5000");
+            var currentRequestUri = this.Request.GetUri();
+            
+            var scheme = currentRequestUri.Scheme;
+            var host = currentRequestUri.Host;
+            var port = currentRequestUri.Port;
+            var urlBuilderConfiguration = new UrlBuilderConfiguration(scheme, host, port);
+
+
+            var booksResourceCollectionLink = CreateBooksResourceCollectionLink(urlBuilderConfiguration);
 
             using (var documentContext = new ResponseDocumentContext(currentRequestUri))
             {
@@ -39,11 +48,26 @@ namespace BigriverBookstore_api.WebService.Controllers
                     .AddSelfLink()
                     .LinksEnd()
                     .Resource(apiEntryPoint)
+                    .Links()
+                    .AddLink("books",booksResourceCollectionLink)
+                    .LinksEnd()
                     .ResourceEnd()
                     .WriteDocument();
 
                 return document;
             }
+        }
+
+        #endregion
+        
+        #region Private Methods
+        private static Link CreateBooksResourceCollectionLink(UrlBuilderConfiguration urlBuilderConfiguration)
+        {
+            var booksResourceCollectionUrl = UrlBuilder.Create(urlBuilderConfiguration)
+                .Path("books")
+                .Build();
+            var blogResourceCollectionLink = new Link(booksResourceCollectionUrl);
+            return blogResourceCollectionLink;
         }
 
         #endregion

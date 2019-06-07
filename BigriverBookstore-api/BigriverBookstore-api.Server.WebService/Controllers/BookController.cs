@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BigriverBookstore_api.WebService.Controllers
 {
-    [Route("/book/")]
+    [Route("/books")]
     public class BookController : Controller
     {
         #region WebApi Methods
@@ -22,35 +22,9 @@ namespace BigriverBookstore_api.WebService.Controllers
         [Produces("application/vnd.api+json")]
         public Document Get()
         {
-            var sampleBooks = new[]
-            {
-                new Book()
-                {
-                    BookId = 1,
-                    Title = "Domain-Driven Design",
-                    DatePublished = DateTime.Today,
-                    ISBN = "978-0321125217"
-                    
-                },
-                new Book()
-                {
-                BookId = 2,
-                Title = "Sample 2",
-                DatePublished = DateTime.Today,
-                ISBN = "582-0322535753"
-                    
-                },
-                new Book()
-                {
-                BookId = 3,
-                Title = "Sample 3",
-                DatePublished = DateTime.Today,
-                ISBN = "412-1437126362"
-                    
-                }
-            };
+            var sampleBooks = BookRepository.GetBooks();
 
-            var currentRequestUri = new Uri("http://localhost:5000");
+            var currentRequestUri = this.Request.GetUri();
 
             using (var documentContext = new ResponseDocumentContext(currentRequestUri))
             {
@@ -61,6 +35,9 @@ namespace BigriverBookstore_api.WebService.Controllers
                     .AddSelfLink()
                     .LinksEnd()
                     .ResourceCollection(sampleBooks)
+                    .Links()
+                    .AddSelfLink()
+                    .LinksEnd()
                     .ResourceCollectionEnd()
                     .WriteDocument();
 
