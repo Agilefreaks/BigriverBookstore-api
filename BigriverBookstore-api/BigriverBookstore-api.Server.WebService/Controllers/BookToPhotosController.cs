@@ -1,3 +1,4 @@
+using System;
 using JsonApiFramework.JsonApi;
 using JsonApiFramework.Server;
 
@@ -6,31 +7,30 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BigriverBookstore_api.WebService.Controllers
 {
-    [Route("/books")]
-    public class BookController : Controller, IBookController
+    [Route("/books/{id}/photos")]
+    public class BookToPhotosController : Controller, IBookToPhotosController
     {
+        
         private IBookRepository _bookRepository;
 
-        public BookController(IBookRepository bookRepository)
+        public BookToPhotosController(IBookRepository bookRepository)
         {
             _bookRepository = bookRepository;
         }
         
         #region WebApi Methods
-        
         /// <summary>
-        /// Books path. Use this to see all books from the list
+        /// Photos to Book path. Use this to see the list of photos used by a book
         /// </summary>
-        /// <returns>A couple of sample books</returns>
-        /// <response code="200">Returns a couple of sample books to let you know that it's working</response>
+        /// <returns>List of photos of a book</returns>
+        /// <response code="200">Returns a list of photos of a book to let you know that it's working</response>
         [HttpGet]
         [Produces("application/vnd.api+json")]
-        public Document GetBooks()
+        public Document GetBookToPhotos(long id)
         {
-            var sampleBooks = _bookRepository.GetBooks();
+            var bookToPhotos = _bookRepository.GetBookToPhotos(Convert.ToInt64(id));
 
             var currentRequestUri = this.Request.GetUri();
-
             using (var documentContext = new ResponseDocumentContext(currentRequestUri))
             {
                 var document = documentContext
@@ -39,13 +39,10 @@ namespace BigriverBookstore_api.WebService.Controllers
                     .Links()
                     .AddSelfLink()
                     .LinksEnd()
-                    .ResourceCollection(sampleBooks)
+                    .ResourceCollection(bookToPhotos)
                     .Relationships()
-                    .AddRelationship("photos", new[] { Keywords.Related})
+                    .AddRelationship("books", new[] { Keywords.Related })
                     .RelationshipsEnd()
-                    .Links()
-                    .AddSelfLink()
-                    .LinksEnd()
                     .ResourceCollectionEnd()
                     .WriteDocument();
 

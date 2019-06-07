@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BigriverBookstore_api.WebService.Controllers
 {
     [Route("/")]
-    public class ApiEntryPointController : Controller
+    public class ApiEntryPointController : Controller, IApiEntryPointController
     {
         #region WebApi Methods
         
@@ -38,6 +38,7 @@ namespace BigriverBookstore_api.WebService.Controllers
 
 
             var booksResourceCollectionLink = CreateBooksResourceCollectionLink(urlBuilderConfiguration);
+            var authorsResourceCollectionLink = CreateAuthorsResourceCollectionLink(urlBuilderConfiguration);
 
             using (var documentContext = new ResponseDocumentContext(currentRequestUri))
             {
@@ -66,8 +67,17 @@ namespace BigriverBookstore_api.WebService.Controllers
             var booksResourceCollectionUrl = UrlBuilder.Create(urlBuilderConfiguration)
                 .Path("books")
                 .Build();
-            var blogResourceCollectionLink = new Link(booksResourceCollectionUrl);
-            return blogResourceCollectionLink;
+            var bookResourceCollectionLink = new Link(booksResourceCollectionUrl);
+            return bookResourceCollectionLink;
+        }
+        
+        private static Link CreateAuthorsResourceCollectionLink(UrlBuilderConfiguration urlBuilderConfiguration)
+        {
+            var authorsResourceCollectionUrl = UrlBuilder.Create(urlBuilderConfiguration)
+                .Path("authors")
+                .Build();
+            var authorResourceCollectionUrl = new Link(authorsResourceCollectionUrl);
+            return authorResourceCollectionUrl;
         }
 
         #endregion

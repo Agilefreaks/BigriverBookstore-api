@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -20,8 +19,10 @@ namespace BigriverBookstore_api.WebService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IBookRepository, BookRepository>();
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -30,7 +31,7 @@ namespace BigriverBookstore_api.WebService
                     Title = "API",
                     Description = "Test API with ASP.NET Core 3.0"
                 });
-                c.IncludeXmlComments(string.Format(@"{0}/BigriverBookstore-api.Server.WebService.xml", AppDomain.CurrentDomain.BaseDirectory));
+                // c.IncludeXmlComments(string.Format(@"{0}/BigriverBookstore-api.Server.WebService.xml", System.AppDomain.CurrentDomain.BaseDirectory));
             });
         }
 

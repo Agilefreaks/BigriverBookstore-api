@@ -1,4 +1,3 @@
-using System;
 using BigriverBookstore_api.ServiceModel;
 using JsonApiFramework.ServiceModel.Configuration;
 
@@ -12,7 +11,7 @@ namespace BigriverBookstore_api.WebService.Configurations
                 .SetApiCollectionPathSegment("books");
             
             this.ResourceIdentity(x => x.BookId)
-                .SetApiType("books");
+                .SetApiType("book");
 
             this.Attribute(x => x.Title)
                 .SetApiPropertyName("bookTitle");
@@ -23,6 +22,7 @@ namespace BigriverBookstore_api.WebService.Configurations
             this.Attribute(x => x.ISBN)
                 .SetApiPropertyName("isbn");
             
+            this.ToManyRelationship<Photo>("photos");
         }
     }
 }

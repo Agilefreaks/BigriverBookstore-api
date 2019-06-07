@@ -1,5 +1,3 @@
-using System;
-
 namespace BigriverBookstore_api.ServiceModel
 {
     public class ApiEntryPoint

@@ -6,18 +6,17 @@ using Xunit;
 
 namespace BigriverBookstore_api.Tests.Controllers
 {
-    public class ApiEntryPointControllerTests : ResourceTypeBuilder<ApiEntryPoint>
+    public class BookControllerTests : ResourceTypeBuilder<Book>
     {
         [Fact]
-        public void Get_Always_ReturnsSuccess()
+        public void GetBooks_Always_ReturnsSuccess()
         {
             // Arrange
-            var mock = new Mock<IApiEntryPointController>();
+            var mock = new Mock<IBookController>();
 
-            // Act
-            var response = mock.Setup(r => r.Get());
-            
             // Assert
+            var response = mock.Setup(r => r.GetBooks());
+            
             Assert.NotNull(response);
         }
     }

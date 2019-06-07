@@ -7,30 +7,28 @@ using BigriverBookstore_api.ServiceModel;
 
 namespace BigriverBookstore_api.WebService
 {
-
-    public static class BookRepository
+    public class BookRepository : IBookRepository
     {
         #region Public Methods
 
-        public static IEnumerable<Book> GetBooks()
+        public IEnumerable<Book> GetBooks()
         { return Books; }
 
-        public static Book GetBook(long bookId)
+        public IEnumerable<Photo> GetBookToPhotos(long bookId)
         {
-            var book = Books.Single(x => x.BookId == bookId);
-            return book;
+            var bookToPhotos = Photos.Where(x => x.BookId == bookId)
+                .ToList();
+            return bookToPhotos;
         }
 
         #endregion
 
         #region Private Properties
         private static List<Book> Books { get; set; }
-        
+        private static List<Photo> Photos { get; set; }
         #endregion
         
-
-        #region Static Constructor
-        static BookRepository()
+        public BookRepository()
         {
             Books = new List<Book>
             {
@@ -45,7 +43,7 @@ namespace BigriverBookstore_api.WebService
                 new Book()
                 {
                     BookId = 2,
-                    Title = "Sample 2",
+                    Title = "Sample 3",
                     DatePublished = DateTime.Today,
                     ISBN = "582-0322535753"
 
@@ -69,7 +67,33 @@ namespace BigriverBookstore_api.WebService
                 }
             };
 
+            Photos = new List<Photo>
+            {
+                new Photo
+                {
+                    BookId = 1,
+                    PhotoId = 1,
+                    PhotoUri = new Uri("https://placekitten.com/200/300")
+                },
+                new Photo
+                {
+                    BookId = 1,
+                    PhotoId = 4,
+                    PhotoUri = new Uri("https://placekitten.com/200/300")
+                },
+                new Photo
+                {
+                    BookId = 2,
+                    PhotoId = 2,
+                    PhotoUri = new Uri("https://placekitten.com/200/300")
+                },
+                new Photo
+                {
+                    BookId = 3,
+                    PhotoId = 3,
+                    PhotoUri = new Uri("https://placekitten.com/200/300")
+                }
+            };
         }
-        #endregion
     }
 }
