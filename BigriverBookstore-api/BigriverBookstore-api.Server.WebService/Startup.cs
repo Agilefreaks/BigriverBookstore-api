@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -29,7 +30,7 @@ namespace BigriverBookstore_api.WebService
                     Title = "API",
                     Description = "Test API with ASP.NET Core 3.0"
                 });
-
+                c.IncludeXmlComments(string.Format(@"{0}/BigriverBookstore-api.Server.WebService.xml", AppDomain.CurrentDomain.BaseDirectory));
             });
         }
 
