@@ -1,3 +1,4 @@
+using System;
 using JsonApiFramework.JsonApi;
 using JsonApiFramework.Server;
 
@@ -6,12 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BigriverBookstore_api.WebService.Controllers
 {
-    [Route("/books")]
-    public class BookController : Controller, IBookController
+    [Route("/authors")]
+    public class AuthorController : Controller, IAuthorController
     {
         private IBookRepository _bookRepository;
 
-        public BookController(IBookRepository bookRepository)
+        public AuthorController(IBookRepository bookRepository)
         {
             _bookRepository = bookRepository;
         }
@@ -19,15 +20,15 @@ namespace BigriverBookstore_api.WebService.Controllers
         #region WebApi Methods
         
         /// <summary>
-        /// Books path. Use this to see all books from the list
+        /// Authors path. Use this to see all authors from the list
         /// </summary>
-        /// <returns>A couple of sample books</returns>
-        /// <response code="200">Returns a couple of sample books to let you know that it's working</response>
+        /// <returns>A couple of sample authors</returns>
+        /// <response code="200">Returns a couple of sample authors to let you know that it's working</response>
         [HttpGet]
         [Produces("application/vnd.api+json")]
-        public Document GetBooks()
+        public Document GetAuthor()
         {
-            var sampleBooks = _bookRepository.GetBooks();
+            var authorToBooks = _bookRepository.GetAuthors();
 
             var currentRequestUri = this.Request.GetUri();
 
@@ -39,10 +40,9 @@ namespace BigriverBookstore_api.WebService.Controllers
                     .Links()
                     .AddSelfLink()
                     .LinksEnd()
-                    .ResourceCollection(sampleBooks)
+                    .ResourceCollection(authorToBooks)
                     .Relationships()
-                    .AddRelationship("photos", new[] { Keywords.Related})
-                    .AddRelationship("authors", new[] { Keywords.Related})
+                    .AddRelationship("books", new[] { Keywords.Related})
                     .RelationshipsEnd()
                     .Links()
                     .AddSelfLink()

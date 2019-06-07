@@ -9,5 +9,8 @@ namespace BigriverBookstore_api.WebService
 
         IEnumerable<Photo> GetBookToPhotos(long bookId);
 
+        IEnumerable<Author> GetAuthors();
+
+        IEnumerable<Book> GetAuthorToBooks(long authorId);
     }
 }

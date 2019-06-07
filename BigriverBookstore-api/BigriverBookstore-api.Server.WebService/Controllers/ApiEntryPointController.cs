@@ -51,6 +51,7 @@ namespace BigriverBookstore_api.WebService.Controllers
                     .Resource(apiEntryPoint)
                     .Links()
                     .AddLink("books",booksResourceCollectionLink)
+                    .AddLink("authors",authorsResourceCollectionLink)
                     .LinksEnd()
                     .ResourceEnd()
                     .WriteDocument();

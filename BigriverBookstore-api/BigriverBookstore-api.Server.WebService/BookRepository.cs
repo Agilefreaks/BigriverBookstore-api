@@ -21,11 +21,24 @@ namespace BigriverBookstore_api.WebService
             return bookToPhotos;
         }
 
+        public IEnumerable<Book> GetAuthorToBooks(long authorId)
+        {
+            var authorToBooks = Books.Where(x => x.AuthorId == authorId)
+                .ToList();
+            return authorToBooks;
+        }
+        
+        public IEnumerable<Author> GetAuthors()
+        {
+            return Authors;
+        }
+
         #endregion
 
         #region Private Properties
         private static List<Book> Books { get; set; }
         private static List<Photo> Photos { get; set; }
+        private static List<Author> Authors { get; set; }
         #endregion
         
         public BookRepository()
@@ -35,6 +48,7 @@ namespace BigriverBookstore_api.WebService
                 new Book()
                 {
                     BookId = 1,
+                    AuthorId = 1,
                     Title = "Domain-Driven Design",
                     DatePublished = DateTime.Today,
                     ISBN = "978-0321125217"
@@ -43,6 +57,7 @@ namespace BigriverBookstore_api.WebService
                 new Book()
                 {
                     BookId = 2,
+                    AuthorId = 1,
                     Title = "Sample 3",
                     DatePublished = DateTime.Today,
                     ISBN = "582-0322535753"
@@ -51,6 +66,7 @@ namespace BigriverBookstore_api.WebService
                 new Book()
                 {
                     BookId = 3,
+                    AuthorId = 1,
                     Title = "Sample 3",
                     DatePublished = DateTime.Today,
                     ISBN = "412-1437126362"
@@ -60,6 +76,7 @@ namespace BigriverBookstore_api.WebService
                 new Book()
                 {
                     BookId = 4,
+                    AuthorId = 2,
                     Title = "Sample 4",
                     DatePublished = DateTime.Today,
                     ISBN = "836-3712146362"
@@ -92,6 +109,22 @@ namespace BigriverBookstore_api.WebService
                     BookId = 3,
                     PhotoId = 3,
                     PhotoUri = new Uri("https://placekitten.com/200/300")
+                }
+            };
+
+            Authors = new List<Author>
+            {
+                new Author
+                {
+                    AuthorId = 1,
+                    FirstName = "Aron",
+                    LastName = "Smith"
+                },
+                new Author
+                {
+                    AuthorId = 2,
+                    FirstName = "Aron",
+                    LastName = "Smith Jr"
                 }
             };
         }

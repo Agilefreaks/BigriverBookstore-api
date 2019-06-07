@@ -33,6 +33,7 @@ namespace BigriverBookstore_api.ServiceModel
             serviceModelBuilder.Configurations.Add(new ApiEntryPointConfiguration());
             serviceModelBuilder.Configurations.Add(new BookConfiguration());
             serviceModelBuilder.Configurations.Add(new PhotoConfiguration());
+            serviceModelBuilder.Configurations.Add(new AuthorConfiguration());
             
             serviceModelBuilder.HomeResource<ApiEntryPoint>();
 

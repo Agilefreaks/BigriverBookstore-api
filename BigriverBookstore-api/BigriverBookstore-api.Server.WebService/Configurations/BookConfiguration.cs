@@ -23,6 +23,8 @@ namespace BigriverBookstore_api.WebService.Configurations
                 .SetApiPropertyName("isbn");
             
             this.ToManyRelationship<Photo>("photos");
+
+            this.ToOneRelationship<Author>("authors");
         }
     }
 }

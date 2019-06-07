@@ -1,3 +1,4 @@
+using System;
 using JsonApiFramework.JsonApi;
 using JsonApiFramework.Server;
 
@@ -6,12 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BigriverBookstore_api.WebService.Controllers
 {
-    [Route("/books")]
-    public class BookController : Controller, IBookController
+    [Route("/authors/{id}/books")]
+    public class AuthorToBooksController : Controller, IAuthorToBooksController
     {
         private IBookRepository _bookRepository;
 
-        public BookController(IBookRepository bookRepository)
+        public AuthorToBooksController(IBookRepository bookRepository)
         {
             _bookRepository = bookRepository;
         }
@@ -19,18 +20,17 @@ namespace BigriverBookstore_api.WebService.Controllers
         #region WebApi Methods
         
         /// <summary>
-        /// Books path. Use this to see all books from the list
+        /// Author to Books path. Use this to see all the books of an author
         /// </summary>
-        /// <returns>A couple of sample books</returns>
-        /// <response code="200">Returns a couple of sample books to let you know that it's working</response>
+        /// <returns>A couple of sample books of an author</returns>
+        /// <response code="200">Returns a couple of sample books of an author to let you know that it's working</response>
         [HttpGet]
         [Produces("application/vnd.api+json")]
-        public Document GetBooks()
+        public Document GetAuthorToBooks(long id)
         {
-            var sampleBooks = _bookRepository.GetBooks();
+            var authorToBooks = _bookRepository.GetAuthorToBooks(Convert.ToInt64(id));
 
             var currentRequestUri = this.Request.GetUri();
-
             using (var documentContext = new ResponseDocumentContext(currentRequestUri))
             {
                 var document = documentContext
@@ -39,14 +39,10 @@ namespace BigriverBookstore_api.WebService.Controllers
                     .Links()
                     .AddSelfLink()
                     .LinksEnd()
-                    .ResourceCollection(sampleBooks)
+                    .ResourceCollection(authorToBooks)
                     .Relationships()
-                    .AddRelationship("photos", new[] { Keywords.Related})
-                    .AddRelationship("authors", new[] { Keywords.Related})
+                    .AddRelationship("authors", new[] { Keywords.Related })
                     .RelationshipsEnd()
-                    .Links()
-                    .AddSelfLink()
-                    .LinksEnd()
                     .ResourceCollectionEnd()
                     .WriteDocument();
 
