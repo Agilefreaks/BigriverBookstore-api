@@ -37,8 +37,11 @@ Plan the stories with at least one of your colleagues.
 Don't work on this out of the office, you can work on other related projects but keep the `work` in the office.
 
 # Running the project
-
-TBD
+- Install Ruby 2.7.1 using rvm/rbenv
+- Create a local postgres user: 
+`CREATE ROLE bookstore_admin WITH LOGIN PASSWORD 'password' SUPERUSER;`
+- Run `bundle install`
+- Run `rails db:setup`
 
 # Running the specs
 
