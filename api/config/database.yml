@@ -20,6 +20,7 @@ test:
 
 
 production:
+  <<: *default
   database: bookstore_production
   timeout: 5000
   username: <%= ENV['BOOKSTORE_USER'] %>
