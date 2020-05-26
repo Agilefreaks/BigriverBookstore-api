@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Serialize the data
-gem 'fast_jsonapi'
+gem 'fast_jsonapi', '~> 1.7.2', git: 'https://github.com/fast-jsonapi/fast_jsonapi'
 
 # Paginate the data
 gem 'pagy', '~> 3.5' 
