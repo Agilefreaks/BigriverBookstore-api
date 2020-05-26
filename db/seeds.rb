@@ -95,5 +95,5 @@
     "author": 'Peter Armstrong'
   }
 ].each do |book_attributes|
-  Book.create(book_attributes.except(:description))
+  Book.create(book_attributes)
 end
