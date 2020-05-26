@@ -45,9 +45,13 @@ Don't work on this out of the office, you can work on other related projects but
 
 # Running the specs
 
-TBD
+- Run `rspec spec/controllers/v1/` in the root project.
  
 # Running linting
 
-TBD
+- Hit `rubocop` in the root project's console.
+
+# Documentation
+
+You can find [here](https://muresanbeniamin.github.io/BigriverBookstore-api-Documentation/#introduction) the documentation
 
