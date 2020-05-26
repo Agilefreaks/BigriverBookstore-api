@@ -29,7 +29,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'fast_jsonapi', '~> 1.7.2', git: 'https://github.com/fast-jsonapi/fast_jsonapi'
 
 # Paginate the data
-gem 'pagy', '~> 3.5' 
+gem 'pagy', '~> 3.5'
+
+# Map incoming controller params to named scopes in resources
+gem 'has_scope'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
