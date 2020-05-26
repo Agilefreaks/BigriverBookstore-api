@@ -1,0 +1,58 @@
+require: rubocop-rspec
+AllCops:
+  TargetRubyVersion: 2.7.1
+  Exclude: 
+    - 'db/seeds.rb'
+    - 'db/schema.rb'
+    - 'bin/*'
+Layout/LineLength:
+  Max: 120
+Metrics/AbcSize:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Naming/PredicateName:
+  Enabled: false
+Layout/TrailingEmptyLines:
+  Enabled: true
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/SignalException:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/SingleLineBlockParams:
+  Enabled: false
+Style/AndOr:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Layout/CaseIndentation:
+  Enabled: true
+Style/RaiseArgs:
+  Enabled: false
+Layout/SpaceInLambdaLiteral:
+  EnforcedStyle: require_space
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+Bundler/OrderedGems:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    '%i': '()'
+    '%I': '()'
+    '%r': '{}'
+    '%w': '()'
+    '%W': '()'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
